@@ -1,0 +1,74 @@
+<mat-nav-list>
+    <div class="profile-card">
+        <!-- <div class="header">
+            <h2>Soufiane FADIL</h2>
+            <h4>example@email.com</h4>
+        </div> -->
+        <!-- <span class="logo-light" style="line-height: 70px;">
+            <img src="http://13.234.238.30/assets/images/admin_logo.png" alt="" height="16">
+        </span> -->
+        <img src="http://13.234.238.30/assets/images/smalllogo.png" alt="Soufiane FADIL">
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <h2 matSubheader>overview</h2>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+        <mat-icon>dashboard</mat-icon>
+        Dashboard
+    </a>
+
+    <mat-divider></mat-divider>
+
+    <h2 matSubheader>pages</h2>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/category">
+        <mat-icon>category</mat-icon>        
+        <button mat-button [matMenuTriggerFor]="category">Category</button>        
+        <!-- <mat-menu #category="matMenu">
+            <button mat-menu-item>Category Add</button>
+            <button mat-menu-item>Category List</button>
+        </mat-menu> -->
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/menu">
+        <mat-icon>menu</mat-icon>
+        <button mat-button [matMenuTriggerFor]="menu">Menu</button>        
+        <!-- <mat-menu #menu="matMenu">
+            <button mat-menu-item>Menu Add</button>
+            <button mat-menu-item>Menu List</button>
+        </mat-menu> -->
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/restaurant">
+        <mat-icon>list</mat-icon>
+        <button mat-button [matMenuTriggerFor]="restaurant">Restaurant</button>        
+        <!-- <mat-menu #restaurant="matMenu">
+            <button mat-menu-item>Restaurant Add</button>
+            <button mat-menu-item>Restaurant List</button>
+        </mat-menu> -->
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/discount">
+        <mat-icon>business</mat-icon>
+        <button mat-button [matMenuTriggerFor]="discount">Discount</button>        
+        <!-- <mat-menu #discount="matMenu">
+            <button mat-menu-item>Discount Add</button>
+            <button mat-menu-item>Discount List</button>
+        </mat-menu> -->
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/tax">
+        <mat-icon>create</mat-icon>
+        <button mat-button [matMenuTriggerFor]="tax">Tax</button>        
+        <!-- <mat-menu #tax="matMenu">
+            <button mat-menu-item routerLinkActive="list-item-active" routerLink="/tax">Tax Add</button>
+            <button mat-menu-item routerLinkActive="list-item-active" routerLink="/taxlist">Tax List</button>
+        </mat-menu> -->
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/report">
+        <mat-icon>report</mat-icon>
+        <button mat-button [matMenuTriggerFor]="reports">Reports</button>        
+        <!-- <mat-menu #reports="matMenu">
+            <button mat-menu-item>Category Summary</button>
+            <button mat-menu-item>Item Summary</button>            
+        </mat-menu> -->
+    </a>    
+</mat-nav-list>
