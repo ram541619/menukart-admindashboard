@@ -11,11 +11,11 @@ export class CategoryService {
   url = localStorage.getItem('ServerUrl');
   constructor(private http: HttpClient) { }
 
-  addNewCategory(Category: Categorymodel):  Observable<boolean> {
+  addNewCategory(Category: any):  Observable<boolean> {
     console.log(this.url);
     console.log(Category);
     // http://13.234.238.30:8080/menukart/menukart/Menu_kart/rest-api/Category/addCateogry
-    return this.http.post<boolean>(`${this.url}Category/addCateogry`, Category);
+    return this.http.post<boolean>(`${this.url}Category/addCateogry`, JSON.stringify(Category));    
   }
 
   getCategories(): Observable<Category[]>{

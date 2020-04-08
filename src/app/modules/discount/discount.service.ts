@@ -18,6 +18,6 @@ export class DiscountService {
   }
 
   getDiscount(): Observable<DiscountDto[]>{
-    return this.http.get<DiscountDto[]>(`${this.url}Discount/discount`);
+    return this.http.get<DiscountDto[]>(`${this.url}Discount/findAllDiscount`);
   }
 }

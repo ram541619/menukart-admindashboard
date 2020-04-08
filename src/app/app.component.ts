@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'dashboard';
   constructor() {
-    const serverURL = 'http://13.234.238.30:8080/menukart/menukart/Menu_kart/rest-api/';
+    const serverURL = 'http://13.233.0.160:8080/menukart/menukart/Menu_kart/rest-api/';
     //const serverURL = 'http://localhost:8080/api/';
     localStorage.setItem('ServerUrl', serverURL);
   }

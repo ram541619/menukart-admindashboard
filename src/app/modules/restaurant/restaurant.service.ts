@@ -14,11 +14,11 @@ export class RestaurantService {
   addNewRestaurant(restaurant: RestaurantDto):  Observable<boolean> {
     console.log(this.url);
     console.log(restaurant);    
-    return this.http.post<boolean>(`${this.url}Menu/addRestaurant`, restaurant);
+    return this.http.post<boolean>(`${this.url}Resturant/addRestaurant`, restaurant);
   }
 
   getRestaurant(): Observable<RestaurantDto[]>{
-    return this.http.get<RestaurantDto[]>(`${this.url}Restaurant/restaurant`);
+    return this.http.get<RestaurantDto[]>(`${this.url}Resturant/resturant`);
   }
 
 }

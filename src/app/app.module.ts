@@ -19,6 +19,7 @@ import { RestaurantlistComponent } from './modules/restaurant/restaurantlist/res
 import { DiscountlistComponent } from './modules/discount/discountlist/discountlist.component';
 import { ReportslistComponent } from './modules/reports/reportslist/reportslist.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,7 @@ import { ReportslistComponent } from './modules/reports/reportslist/reportslist.
     MenulistComponent,
     RestaurantlistComponent,
     DiscountlistComponent,
-    ReportslistComponent,
+    ReportslistComponent    
   ],
   imports: [
     BrowserModule,
