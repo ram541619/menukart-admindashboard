@@ -1,25 +1,135 @@
 <div class="container">
-    <h3 mat-dialog-title>Add new Tax</h3>
   
-    <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
-  
-      <!-- <div class="form">
+
+  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+
+    <!-- <div class="form">
         <mat-form-field color="accent">
           <input matInput #input class="form-control" placeholder="Id" [(ngModel)]="data.id" name="id" required >
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div> -->
-  
-      <!--Textarea for demo purposes-->
+
+    <!--Textarea for demo purposes-->
+    <div *ngIf="router == '/tax'">
+      <h3 mat-dialog-title>Add new Tax</h3>
+      <!-- <mat-form-field color="accent">
+        <input matInput placeholder="Url" [(ngModel)]="data.url" name="url">
+      </mat-form-field> -->
       <div class="form">
         <mat-form-field color="accent">
-          <textarea matInput #input class="form-control" placeholder="Tax Title" [(ngModel)]="data.taxTitle" name="title" required ></textarea>
+          <input matInput class="form-control" placeholder="Tax Title" [(ngModel)]="data.taxTitle" name="title"
+            required>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
-  
-      <!--Contains mat-hint for characters count and has maxLengt set-->
-      <!-- <div class="form">
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput class="form-control" placeholder="Display Name" [(ngModel)]="data.displayName"
+            name="displayName" required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput class="form-control" placeholder="Tax Amount" [(ngModel)]="data.taxAmount" name="taxAmount"
+            required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field color="accent">
+          <textarea matInput #input class="form-control" placeholder="Tax Description" [(ngModel)]="data.taxDescription"
+            name="taxDescription" required></textarea>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-label>Tax Type</mat-label>&nbsp;&nbsp;
+        <mat-radio-group  aria-label="Select an option">
+          <mat-radio-button [value]="1">Forward</mat-radio-button>
+          <mat-radio-button [value]="2">Backward</mat-radio-button>
+        </mat-radio-group>        
+      </div>
+      <div class="form">
+        <mat-label>Order Type</mat-label>&nbsp;&nbsp;
+        <mat-radio-group aria-label="Select an option">
+          <mat-radio-button [value]="1">Delivery</mat-radio-button>
+          <mat-radio-button [value]="2">Pick Up</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+
+    <div *ngIf="router == '/category'">
+      <h3 mat-dialog-title>Add new Category</h3>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput class="form-control" placeholder="Category Title" [(ngModel)]="data.name" name="title" required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput class="form-control" placeholder="Category DisplayName" [(ngModel)]="data.displayName"
+            name="displayName" required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>   
+    
+    <div *ngIf="router == '/discount'">
+      <h3 mat-dialog-title>Add new Discount</h3>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput class="form-control" placeholder="Discount Title" [(ngModel)]="data.name" name="title" required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput class="form-control" placeholder="Discount DisplayName" [(ngModel)]="data.displayName"
+            name="displayName" required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>  
+
+    <div *ngIf="router == '/menu'">
+      <h3 mat-dialog-title>Add new Menu</h3>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput class="form-control" placeholder="Menu Title" [(ngModel)]="data.name" name="title" required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput class="form-control" placeholder="Menu DisplayName" [(ngModel)]="data.displayName"
+            name="displayName" required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>  
+
+    <div *ngIf="router == '/restaurant'">
+      <h3 mat-dialog-title>Add new Restaurant</h3>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput class="form-control" placeholder="Restaurant Title" [(ngModel)]="data.name" name="title" required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput class="form-control" placeholder="Restaurant DisplayName" [(ngModel)]="data.displayName"
+            name="displayName" required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>  
+
+    <!--Contains mat-hint for characters count and has maxLengt set-->
+    <!-- <div class="form">
         <mat-form-field color="accent">
           <input matInput #inputstate class="form-control" placeholder="State" [(ngModel)]="data.state" name="state" maxlength="10" required >
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
@@ -44,10 +154,11 @@
           <input matInput placeholder="Updated at" [(ngModel)]="data.updated_at" name="updated_at">
         </mat-form-field>
       </div> -->
-  
-      <div mat-dialog-actions>
-        <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
-        <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
-      </div>
-    </form>
-  </div>
+
+    <div mat-dialog-actions>
+      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
+        (click)="confirmAdd()">Save</button>
+      <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+    </div>
+  </form>
+</div>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RestaurantDto } from 'src/app/classmodule/restaurant/restaurant';
 
@@ -11,10 +11,12 @@ export class RestaurantService {
   url = localStorage.getItem('ServerUrl');
   constructor(private http: HttpClient) { }
 
-  addNewRestaurant(restaurant: RestaurantDto):  Observable<boolean> {
-    console.log(this.url);
-    console.log(restaurant);    
-    return this.http.post<boolean>(`${this.url}Resturant/addRestaurant`, restaurant);
+  addNewRestaurant(restaurant: any):  Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    //const headers = new HttpHeaders({'Content-Type': 'text/uri-list'});
+    let body = JSON.stringify(restaurant);
+    console.log(body);
+    return this.http.post<any>(`${this.url}Resturant/addResturant`, body, { headers: headers });
   }
 
   getRestaurant(): Observable<RestaurantDto[]>{

@@ -40,12 +40,14 @@ export class TaxComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        // After dialog is closed we're doing frontend updates
-        // For add we're just pushing a new row inside DataService
-        // this.exampleDatabase.dataChange.value.push(this.dataService.getDialogData());
-        // this.refreshTable();
+        this.loadData();
+        this.refreshTable();
       }
     });
+  }
+
+  private refreshTable() {
+    this.paginator._changePageSize(this.paginator.pageSize);
   }
 
   startEdit(tax: TaxDto) {

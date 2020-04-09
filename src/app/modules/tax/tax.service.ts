@@ -1,22 +1,26 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TaxDto, TaxModal } from 'src/app/classmodule/tax/tax';
 
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class TaxService {
 
   url = localStorage.getItem('ServerUrl');
   constructor(private http: HttpClient) { }
+    
 
-  addNewTax(tax: any):  Observable<boolean> {
-    console.log(this.url);
-    console.log(JSON.stringify(tax));
-    // http://13.233.0.160:8080/menukart/menukart/Menu_kart/rest-api/Tax/findAllTax
-    // http://13.234.238.30:8080/menukart/menukart/Menu_kart/rest-api/Category/addCateogry
-    return this.http.post<boolean>(`${this.url}Tax/addTaxe`, JSON.stringify(tax));
+  addNewTax(tax: any):  Observable<any> { 
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    //const headers = new HttpHeaders({'Content-Type': 'text/uri-list'});
+
+    //let options = new Request({ headers: headers });
+    let body = JSON.stringify(tax);       
+    return this.http.post<any>(`${this.url}Tax/addTaxe`, body, {headers: headers});
   }
 
   getTax(): Observable<TaxDto[]>{

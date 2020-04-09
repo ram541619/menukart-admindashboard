@@ -6,7 +6,7 @@ import { DashboardComponent } from 'src/app/modules/dashboard/dashboard.componen
 import { RouterModule } from '@angular/router';
 // import { PostsComponent } from 'src/app/modules/posts/posts.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { MatSidenavModule, MatDividerModule, MatCardModule, MatPaginatorModule, MatTableModule, MatTreeModule, MatDialogModule, MatFormFieldModule, MatButtonModule, MatIconModule, MatToolbarModule, MatInputModule } from '@angular/material';
+import { MatSidenavModule, MatDividerModule, MatCardModule, MatPaginatorModule, MatTableModule, MatTreeModule, MatDialogModule, MatFormFieldModule, MatButtonModule, MatIconModule, MatToolbarModule, MatInputModule, MatTooltipModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatChipsModule, MatGridListModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DashboardService } from 'src/app/modules/dashboard.service';
 import { CategoryComponent } from 'src/app/modules/category/category.component';
@@ -46,7 +46,13 @@ import { DeleteComponent } from 'src/app/dialogs/delete/delete.component';
     MatTreeModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatTooltipModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule,
+    MatChipsModule,
+    MatGridListModule
   ],
   exports: [
     CommonModule,
@@ -68,7 +74,13 @@ import { DeleteComponent } from 'src/app/dialogs/delete/delete.component';
     MatInputModule,
     AddComponent,
     EditComponent,
-    DeleteComponent
+    DeleteComponent,
+    MatTooltipModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule,
+    MatChipsModule,
+    MatGridListModule
   ],
   providers: [
     DashboardService

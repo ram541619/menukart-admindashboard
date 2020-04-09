@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Categorymodel, Category } from 'src/app/classmodule/category/category';
 import { Observable } from 'rxjs';
 
@@ -11,11 +11,12 @@ export class CategoryService {
   url = localStorage.getItem('ServerUrl');
   constructor(private http: HttpClient) { }
 
-  addNewCategory(Category: any):  Observable<boolean> {
+  addNewCategory(Category: any):  Observable<any> {
     console.log(this.url);
     console.log(Category);
-    // http://13.234.238.30:8080/menukart/menukart/Menu_kart/rest-api/Category/addCateogry
-    return this.http.post<boolean>(`${this.url}Category/addCateogry`, JSON.stringify(Category));    
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    let body = JSON.stringify(Category);           
+    return this.http.post<any>(`${this.url}Category/addCateogry`, body, {headers : headers});    
   }
 
   getCategories(): Observable<Category[]>{

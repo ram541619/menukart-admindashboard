@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DiscountDto } from 'src/app/classmodule/discount/discount';
 import { Observable } from 'rxjs';
 
@@ -11,10 +11,13 @@ export class DiscountService {
   url = localStorage.getItem('ServerUrl');
   constructor(private http: HttpClient) { }
 
-  addNewDiscount(discount: DiscountDto):  Observable<boolean> {
+  addNewDiscount(discount: any):  Observable<any> {
     console.log(this.url);
-    console.log(discount);    
-    return this.http.post<boolean>(`${this.url}Discount/addDiscount`, discount);
+    console.log(discount);   
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    //const headers = new HttpHeaders({'Content-Type': 'text/uri-list'});
+    let body = JSON.stringify(discount);
+    return this.http.post<any>(`${this.url}Discount/addDiscount`, body, { headers: headers });     
   }
 
   getDiscount(): Observable<DiscountDto[]>{
