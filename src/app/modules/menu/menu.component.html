@@ -28,12 +28,12 @@
   
       <ng-container matColumnDef="menuStatus">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.avilable ? 'avilable': 'UnAvilable'}}</mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.avilable ? 'avilable': 'Out Of Stock'}}</mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="menuFoodType">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Menu Food Type</mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.description}}</mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.foodType}}</mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="menuName">

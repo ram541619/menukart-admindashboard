@@ -72,32 +72,29 @@
     </div>
 
     <div *ngIf="router == '/category'">
-      <h3 mat-dialog-title>Add new Category</h3>      
+      <h3 mat-dialog-title>Add new Category</h3>
       <div class="form">
         <mat-form-field color="accent">
-          <input matInput class="form-control" placeholder="Category Title" [(ngModel)]="data.name" name="title"
-            required>
+          <input matInput placeholder="Category Title" [(ngModel)]="data.name" name="title" required>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
       <div class="form">
         <mat-form-field color="accent">
-          <input matInput class="form-control" placeholder="Category DisplayName" [(ngModel)]="data.displayName"
-            name="displayName" required>
+          <input matInput placeholder="Category DisplayName" [(ngModel)]="data.displayName" name="displayName" required>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
-      <!-- <div class="form">
-        <mat-label>Logo</mat-label>
-        <div style="padding-right: 10px;">
-          <app-material-file-upload (complete)="onFileComplete($event)"></app-material-file-upload>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput placeholder="Quality" [(ngModel)]="data.quality" name="Quality">
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-label>Logo</mat-label> &nbsp; &nbsp;
+        <div width="20%">
+          <input type="file" (change)="onFileUpload($event)">
         </div>
-      </div> -->
-      <div class="form">
-          <mat-label>Logo</mat-label> &nbsp; &nbsp;
-          <div width="20%">
-           <input type="file" (change)="onFileUpload($event)">
-          </div>
       </div>
     </div>
 
@@ -117,7 +114,7 @@
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
-      <div class="form">   
+      <div class="form">
         <div style="width: 30%;">
           <mat-form-field>
             <mat-label>Discount on Category</mat-label>
@@ -128,7 +125,7 @@
               <option value="africaFood">Africa Food</option>
             </select>
           </mat-form-field>
-        </div>             
+        </div>
         <div style="width: 30%;">
           <mat-form-field>
             <mat-label>Discount on Menu</mat-label>
@@ -136,10 +133,10 @@
               <option value="italianMenu">Italian Menu</option>
               <option value="italianMenu">Italian Menu</option>
               <option value="italianMenu">Italian Menu</option>
-              <option value="italianMenu">Italian Menu</option>              
+              <option value="italianMenu">Italian Menu</option>
             </select>
           </mat-form-field>
-        </div>             
+        </div>
       </div>
       <div class="form">
         <mat-label>Order Type</mat-label>&nbsp;&nbsp;
@@ -205,64 +202,75 @@
       <h3 mat-dialog-title>Add new Menu</h3>
       <div class="form">
         <mat-label>Menu Logo</mat-label>
-        <div style="padding-right: 10px;">
-          <app-material-file-upload (complete)="onFileComplete($event)"></app-material-file-upload>
+        <input type="file" (change)="onFileRestaurantUpload($event)">
+      </div>
+      <div class="form">
+        <div class="width: 50%">
+          <mat-form-field color="accent">
+            <input matInput class="form-control" placeholder="Menu Name" [(ngModel)]="data.name" name="title" required>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="margin_fifty">
+          <mat-form-field color="accent">
+            <input matInput class="form-control" placeholder="Menu DisplayName" [(ngModel)]="data.displayName"
+              name="displayName" required>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="form">
+        <div class="width: 40%">
+          <mat-label>Menu Status</mat-label>&nbsp;&nbsp;          
+            <mat-radio-group [(ngModel)]="orderTypeSelected">
+              <mat-radio-button *ngFor="let type of orderType" [value]="type">
+                {{ type }}
+              </mat-radio-button>
+            </mat-radio-group>          
+        </div>
+        <div class="margin_fifty">
+          <mat-label>Menu Food Type</mat-label>&nbsp;&nbsp;          
+            <mat-radio-group [(ngModel)]="foodTypeSelected">
+              <mat-radio-button *ngFor="let type of foodType" [value]="type">
+                {{ type }}
+              </mat-radio-button>
+            </mat-radio-group>          
+          {{  foodTypeSelected }}
         </div>
       </div>
       <div class="form">
-        <mat-form-field color="accent">
-          <input matInput class="form-control" placeholder="Menu Name" [(ngModel)]="data.name" name="title" required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
+        <div class="width: 40%">
+          <mat-form-field color="accent">
+            <input matInput class="form-control" placeholder="Menu Price" [(ngModel)]="data.menuPrice" name="Menu Price"
+              required>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="margin_fifty">
+          <mat-form-field color="accent">
+            <input matInput class="form-control" placeholder="Menu Category" [(ngModel)]="data.category"
+              name="Menu Price" required>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
       </div>
+
       <div class="form">
-        <mat-form-field color="accent">
-          <input matInput class="form-control" placeholder="Menu DisplayName" [(ngModel)]="data.displayName"
-            name="displayName" required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-      <div class="form">
-        <mat-label>Menu Status</mat-label>&nbsp;&nbsp;
-        <mat-radio-group aria-label="Select an option" [(ngModel)]="data.orderType">
-          <mat-radio-button [value]="1">Available</mat-radio-button>
-          <mat-radio-button [value]="2">Out Of Stock</mat-radio-button>
-        </mat-radio-group>
-      </div>
-      <div class="form">
-        <mat-label>Menu Food Type</mat-label>&nbsp;&nbsp;
-        <mat-radio-group aria-label="Select an option" [(ngModel)]="data.orderType">
-          <mat-radio-button [value]="1">Vegetarian</mat-radio-button>
-          <mat-radio-button [value]="2">Non Vegetarian</mat-radio-button>
-        </mat-radio-group>
-      </div>
-      <div class="form">
-        <mat-form-field color="accent">
-          <input matInput class="form-control" placeholder="Menu Price" [(ngModel)]="data.menuPrice" name="Menu Price"
-            required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-      <div class="form">
-        <mat-form-field color="accent">
-          <input matInput class="form-control" placeholder="Menu Category" [(ngModel)]="data.category" name="Menu Price"
-            required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-      <div class="form">
-        <mat-form-field color="accent">
-          <input matInput class="form-control" placeholder="Menu Short Code" [(ngModel)]="data.shortCode"
-            name="Menu ShortCode" required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-      <div class="form">
-        <mat-form-field color="accent">
-          <input matInput class="form-control" placeholder="Menu Description" [(ngModel)]="data.description"
-            name="Menu Description" required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
+        <div class="width: 40%">
+          <mat-form-field color="accent">
+            <input matInput class="form-control" placeholder="Menu Short Code" [(ngModel)]="data.shortCode"
+              name="Menu ShortCode" required>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="margin_fifty">
+          <mat-form-field color="accent">
+            <input matInput class="form-control" placeholder="Menu Description" [(ngModel)]="data.description"
+              name="Menu Description" required>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
       </div>
     </div>
 
@@ -271,17 +279,17 @@
       <div class="form">
         <div style="width: 30%;">
           <mat-label>Restaurant Logo</mat-label>
-           &nbsp; &nbsp;
-            <div width="20%">
-             <input type="file" (change)="onFileRestaurantUpload($event)">
-            </div>
+          &nbsp; &nbsp;
+          <div width="20%">
+            <input type="file" (change)="onFileRestaurantUpload($event)">
+          </div>
         </div>
         <div style="width: 10%;"></div>
         <div style="width: 30%;">
           <mat-label>Restaurant Banner</mat-label>
           <div width="20%">
             <input type="file" (change)="onFileBannerUpload($event)">
-           </div>
+          </div>
         </div>
       </div>
       <div class="form">

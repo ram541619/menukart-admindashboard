@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatRadioChange } from '@angular/material';
 import { TaxDto, TaxModal, SaveTaxDto } from 'src/app/classmodule/tax/tax';
 import { TaxService } from 'src/app/modules/tax/tax.service';
 import { FormControl, Validators } from '@angular/forms';
@@ -21,8 +21,14 @@ export class AddComponent implements OnInit {
   filePath: File = null;
   model: TaxModal;
   router: string;
-  orderType: string[] = ['Delivery', 'Pick Up'];
-  taxType: string[] = ['Forward', 'Backward'];
+  isOrderType: boolean;
+  isFoodType: boolean;
+  orderType: string[] = ['Available', 'Out of Stock'];
+  foodType: string[] = ['Vegetarian', 'Non-Vegetarian'];  
+  foodTypeSelected: string;
+  orderTypeSelected: string;
+  filter: any;
+  groupOptionsSelect: Array<any>;
   constructor(public dialogRef: MatDialogRef<AddComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public taxService: TaxService,
@@ -62,6 +68,7 @@ export class AddComponent implements OnInit {
     this.filePath = <File>event.target.files[0];
     console.log(event); // We just print out data bubbled up from event emitter.
   }
+ 
   getErrorMessage() {
     return this.formControl.hasError('required') ? 'Required field' :
       this.formControl.hasError('email') ? 'Not a valid email' :
@@ -140,20 +147,23 @@ export class AddComponent implements OnInit {
     }
 
     if (this.router === '/menu') {
+      debugger
+      console.log(this.foodTypeSelected);
       let menu = {
         menu:
         {
-          name: "name",
-          shortCode: "shortCode",
-          price: 123,
-          description: "description",
-          onlineDisplayName: "onlineDisplayName",
+          name: this.data.name,
+          shortCode: this.data.shortCode,
+          price: this.data.menuPrice,
+          description: this.data.description,
+          onlineDisplayName: this.data.onlineDisplayName,
           isAvilable: "true",
           cateogry: {
             id: 1
           }
         }
       }
+      console.log(this.data);
       this.menuService.addNewMenu(menu)
         .subscribe(response => {
           console.log(response);

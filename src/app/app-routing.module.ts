@@ -12,8 +12,7 @@ import { ReportComponent } from './modules/report/report.component';
 import { TaxlistComponent } from './modules/tax/taxlist/taxlist.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: '*', component: LoginComponent },
+  { path: 'login', component: LoginComponent },  
   {
     path: '',
     component: DefaultComponent,
