@@ -14,6 +14,7 @@ import { AddComponent } from 'src/app/dialogs/add/add.component';
 import { EditComponent } from 'src/app/dialogs/edit/edit.component';
 import { DeleteComponent } from 'src/app/dialogs/delete/delete.component';
 import { MaterialFileUploadComponent } from 'src/app/material-file-upload/material-file-upload.component';
+import { ResturantComponent } from 'src/app/dialogs/resturant/resturant.component';
 
 @NgModule({
   declarations: [
@@ -23,13 +24,15 @@ import { MaterialFileUploadComponent } from 'src/app/material-file-upload/materi
     AddComponent,
     EditComponent,
     DeleteComponent,
+    ResturantComponent,
     MaterialFileUploadComponent
     // PostsComponent
   ],
   entryComponents: [
     AddComponent,
     EditComponent,
-    DeleteComponent
+    DeleteComponent,
+    ResturantComponent
   ],
   imports: [
     CommonModule,
@@ -80,6 +83,7 @@ import { MaterialFileUploadComponent } from 'src/app/material-file-upload/materi
     AddComponent,
     EditComponent,
     DeleteComponent,
+    ResturantComponent,
     MaterialFileUploadComponent,
     MatTooltipModule,
     MatDatepickerModule,

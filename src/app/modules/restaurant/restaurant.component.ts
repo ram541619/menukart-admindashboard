@@ -3,6 +3,7 @@ import { RestaurantDto } from 'src/app/classmodule/restaurant/restaurant';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { RestaurantService } from './restaurant.service';
 import { AddComponent } from 'src/app/dialogs/add/add.component';
+import { ResturantComponent } from 'src/app/dialogs/resturant/resturant.component';
 
 @Component({
   selector: 'app-restaurant',
@@ -37,7 +38,7 @@ export class RestaurantComponent implements OnInit {
   }
 
   addNew(issue: RestaurantDto) {
-    const dialogRef = this.dialog.open(AddComponent, {
+    const dialogRef = this.dialog.open(ResturantComponent, {
       data: { issue: issue }
     });
 
@@ -55,7 +56,7 @@ export class RestaurantComponent implements OnInit {
   private refreshTable() {
     this.paginator._changePageSize(this.paginator.pageSize);
   }
-  
+
   startEdit(tax: RestaurantDto) {
     alert('not yet implemented');
   }

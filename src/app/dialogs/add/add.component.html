@@ -233,10 +233,22 @@
           <mat-label>Menu Food Type</mat-label>&nbsp;&nbsp;          
             <mat-radio-group [(ngModel)]="foodTypeSelected">
               <mat-radio-button *ngFor="let type of foodType" [value]="type">
-                {{ type }}
+                {{ type }} 
               </mat-radio-button>
-            </mat-radio-group>          
-          {{  foodTypeSelected }}
+            </mat-radio-group>                    
+        </div>
+      </div>
+      <div class="form">
+        <div class="custom-control custom-radio">
+          <input id="male" type="radio" class="custom-control-input" value="male" 
+          name="gender" ngModel required>
+          <label class="custom-control-label" for="male">Male</label>
+        </div>
+
+        <div class="custom-control custom-radio">
+          <input id="female" type="radio" class="custom-control-input"
+           value="female" name="gender" ngModel required>
+          <label class="custom-control-label" for="female">Female</label>
         </div>
       </div>
       <div class="form">
@@ -293,12 +305,17 @@
         </div>
       </div>
       <div class="form">
-        <mat-label>Restaurant Food Type</mat-label>&nbsp;&nbsp;
-        <mat-radio-group aria-label="Select an option" [(ngModel)]="data.orderType">
+        <mat-label>Restaurant Food Type</mat-label>&nbsp;&nbsp;            
+            <mat-radio-group [(ngModel)]="resturantFoodTypeSelected">
+              <mat-radio-button *ngFor="let type of foodType" [value]="type">
+                {{ type }} 
+              </mat-radio-button>
+            </mat-radio-group>                    
+        <!-- <mat-radio-group aria-label="Select an option" [(ngModel)]="data.orderType">
           <mat-radio-button [value]="1">Vegetarian</mat-radio-button>
           <mat-radio-button [value]="2">Non Vegetarian</mat-radio-button>
           <mat-radio-button [value]="3">Both (Vegetarian / Non Vegetarian)</mat-radio-button>
-        </mat-radio-group>
+        </mat-radio-group> -->
       </div>
 
       <div class="form">
@@ -346,7 +363,7 @@
 
     <div mat-dialog-actions>
       <button mat-button [type]="submit" color="primary" style="width: 40%;" [disabled]="!formControl.valid"
-        [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
+        [mat-dialog-close]="1" (click)="confirmAdd(formControl)">Save</button>
       <button mat-button style="width: 40%;" color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
     </div>
   </form>

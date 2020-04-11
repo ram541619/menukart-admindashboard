@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatRadioChange } from '@angular/material';
 import { TaxDto, TaxModal, SaveTaxDto } from 'src/app/classmodule/tax/tax';
 import { TaxService } from 'src/app/modules/tax/tax.service';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, NgForm } from '@angular/forms';
 import { UrlSegment, ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from 'src/app/modules/category/category.service';
 import { MenuService } from 'src/app/modules/menu/menu.service';
@@ -75,7 +75,8 @@ export class AddComponent implements OnInit {
         '';
   }
 
-  submit() {
+  submit(form: NgForm) {
+    console.log(form);
     // emppty stuff
   }
 
@@ -83,12 +84,11 @@ export class AddComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  public confirmAdd(): void {
-
+  public confirmAdd(form: NgForm): void {   
     if (this.router === '/discount') {
       let discount = {
         discount: {
-          discountTitle: "discountTitle",
+          discountTitle: this.data.name,
           discountOnCateogry: {
             id: 2
           },
@@ -101,8 +101,8 @@ export class AddComponent implements OnInit {
           addOn: {
             id: 2
           },
-          applicableAmount: 12,
-          discountPrice: 24,
+          applicableAmount: this.data.applicationAmount,
+          discountPrice: this.data.discountPrice,
           formDate: "2020-03-23",
           toDate: "2020-03-26"
         }
@@ -156,7 +156,7 @@ export class AddComponent implements OnInit {
           shortCode: this.data.shortCode,
           price: this.data.menuPrice,
           description: this.data.description,
-          onlineDisplayName: this.data.onlineDisplayName,
+          onlineDisplayName: this.data.displayName,
           isAvilable: "true",
           cateogry: {
             id: 1
