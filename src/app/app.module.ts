@@ -18,6 +18,7 @@ import { MenulistComponent } from './modules/menu/menulist/menulist.component';
 import { RestaurantlistComponent } from './modules/restaurant/restaurantlist/restaurantlist.component';
 import { DiscountlistComponent } from './modules/discount/discountlist/discountlist.component';
 import { ReportslistComponent } from './modules/reports/reportslist/reportslist.component';
+// import { MaterialFileUploadComponent } from './material-file-upload/material-file-upload.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ReportslistComponent } from './modules/reports/reportslist/reportslist.
     MenulistComponent,
     RestaurantlistComponent,
     DiscountlistComponent,
-    ReportslistComponent    
+    ReportslistComponent,
+    // MaterialFileUploadComponent    
   ],
   imports: [
     BrowserModule,

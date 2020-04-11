@@ -42,7 +42,7 @@ const routes: Routes = [{
   }]
 },
 { path: 'login', component: LoginComponent },
-{path: '*', component: DashboardComponent }];
+{path: '*', component: LoginComponent }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

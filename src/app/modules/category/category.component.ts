@@ -43,10 +43,14 @@ export class CategoryComponent implements OnInit {
         // For add we're just pushing a new row inside DataService
         // this.exampleDatabase.dataChange.value.push(this.dataService.getDialogData());
         // this.refreshTable();
+        this.loadData();
+        this.refreshTable();
       }
     });
   }
-
+  private refreshTable() {
+    this.paginator._changePageSize(this.paginator.pageSize);
+  }
   startEdit(tax: Category) {
     alert('not yet implemented');
   }

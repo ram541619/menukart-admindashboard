@@ -8,6 +8,7 @@ import { CategoryService } from 'src/app/modules/category/category.service';
 import { MenuService } from 'src/app/modules/menu/menu.service';
 import { RestaurantService } from 'src/app/modules/restaurant/restaurant.service';
 import { DiscountService } from 'src/app/modules/discount/discount.service';
+import { stringToKeyValue } from '@angular/flex-layout/extended/typings/style/style-transforms';
 
 @Component({
   selector: 'app-add',
@@ -15,6 +16,9 @@ import { DiscountService } from 'src/app/modules/discount/discount.service';
   styleUrls: ['./add.component.scss']
 })
 export class AddComponent implements OnInit {
+  categorySelectedFile: File = null;
+  restaurantFilePath: File = null;
+  filePath: File = null;
   model: TaxModal;
   router: string;
   orderType: string[] = ['Delivery', 'Pick Up'];
@@ -40,7 +44,24 @@ export class AddComponent implements OnInit {
   ngOnInit() {
     console.log();
   }
-
+  onFileComplete(data: any) {
+    debugger
+    this.filePath = <File>data.target.files[0];
+    console.log(data); // We just print out data bubbled up from event emitter.
+  }
+  onFileUpload(event){
+     debugger
+    this.categorySelectedFile = <File>event.target.files[0];
+    console.log(event); // We just print out data bubbled up from event emitter.
+  }
+  onFileRestaurantUpload(event){
+    debugger
+    this.restaurantFilePath = <File>event.target.files[0];
+  }
+  onFileBannerUpload(event){
+    this.filePath = <File>event.target.files[0];
+    console.log(event); // We just print out data bubbled up from event emitter.
+  }
   getErrorMessage() {
     return this.formControl.hasError('required') ? 'Required field' :
       this.formControl.hasError('email') ? 'Not a valid email' :
@@ -111,7 +132,8 @@ export class AddComponent implements OnInit {
           }]
         }
       }
-      this.restaurantService.addNewRestaurant(restaurant)
+      debugger
+      this.restaurantService.addNewRestaurant(this.restaurantFilePath, restaurant)
         .subscribe(response => {
           console.log(response);
         });
@@ -143,14 +165,15 @@ export class AddComponent implements OnInit {
           name: this.data.name,
           displayName: this.data.displayName
         }
-      }
-      this.categoryService.addNewCategory(category)
+      }      
+      this.categoryService.addNewCategory(this.categorySelectedFile, category)
         .subscribe(response => {
           console.log(response);
         });
     }
 
     if (this.router === '/tax') {
+      //console.log(this.data.orderType);
       let tax = {
         tax: {
           taxTitle: this.data.taxTitle,

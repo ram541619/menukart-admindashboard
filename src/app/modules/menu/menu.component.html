@@ -23,12 +23,12 @@
       <!-- ID Column -->
       <ng-container matColumnDef="menuLogo">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Menu Logo</mat-header-cell>
-        <mat-cell *matCellDef="let row" >{{row.id}}</mat-cell>
+        <mat-cell *matCellDef="let row" > <img [src]="'http://13.233.0.160:8080/menukart/downloadFile/'+row.cateogry?.fileName" width="25%"></mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="menuStatus">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.avilable}}</mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.avilable ? 'avilable': 'UnAvilable'}}</mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="menuFoodType">

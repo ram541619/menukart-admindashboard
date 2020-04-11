@@ -23,12 +23,13 @@
       <!-- ID Column -->
       <ng-container matColumnDef="restaurantLogo">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Restaurant Logo</mat-header-cell>
-        <mat-cell *matCellDef="let row" >{{row.id}}</mat-cell>
+        <mat-cell *matCellDef="let row" >
+          <img [src]="row.fileName" width="35%"></mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="restaurantBanner">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Restaurant Banner</mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.displayName}}</mat-cell>
+        <mat-cell *matCellDef="let row"> <img src="assets/images/products/1.jpg" width="25%"></mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="restaurantFoodType">
@@ -43,14 +44,18 @@
 
       <ng-container matColumnDef="restaurantEmail">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Restaurant Email</mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.menu}}</mat-cell>
+        <mat-cell *matCellDef="let row"> {{row?.email}}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="restaurantContact">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Restaurant Contact</mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.fileName}}</mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.contact}}</mat-cell>
       </ng-container>
   
+      <ng-container matColumnDef="restaurantStatus">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Restaurant Status</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.status}}</mat-cell>
+      </ng-container>
       
       
       <!-- actions -->
@@ -82,6 +87,7 @@
       No results
     </div> -->
     <!-- [length]="dataSource.filteredData.length" -->
+    
     <mat-paginator #paginator                   
                    [pageIndex]="0"
                    [pageSize]="10"

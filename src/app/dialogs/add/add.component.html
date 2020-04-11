@@ -1,5 +1,5 @@
 <div class="container">
-  
+
 
   <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
 
@@ -45,15 +45,26 @@
         </mat-form-field>
       </div>
       <div class="form">
+        <!-- <mat-radio-group
+        aria-labelledby="example-radio-group-label"
+        class="example-radio-group"
+        formControlName="foodField">
+        <mat-radio-button class="example-radio-button" *ngFor="let food of foods" [value]="food">
+          {{food}}
+        </mat-radio-button>
+      </mat-radio-group>
+      <div *ngIf="form.get('foodField').hasError('required')" class="error">
+            Food is required
+      </div> -->
         <mat-label>Tax Type</mat-label>&nbsp;&nbsp;
-        <mat-radio-group  aria-label="Select an option">
+        <mat-radio-group aria-label="Select an option" [(ngModel)]="data.taxType">
           <mat-radio-button [value]="1">Forward</mat-radio-button>
           <mat-radio-button [value]="2">Backward</mat-radio-button>
-        </mat-radio-group>        
+        </mat-radio-group>
       </div>
       <div class="form">
         <mat-label>Order Type</mat-label>&nbsp;&nbsp;
-        <mat-radio-group aria-label="Select an option">
+        <mat-radio-group aria-label="Select an option" [(ngModel)]="data.orderType">
           <mat-radio-button [value]="1">Delivery</mat-radio-button>
           <mat-radio-button [value]="2">Pick Up</mat-radio-button>
         </mat-radio-group>
@@ -61,10 +72,11 @@
     </div>
 
     <div *ngIf="router == '/category'">
-      <h3 mat-dialog-title>Add new Category</h3>
+      <h3 mat-dialog-title>Add new Category</h3>      
       <div class="form">
         <mat-form-field color="accent">
-          <input matInput class="form-control" placeholder="Category Title" [(ngModel)]="data.name" name="title" required>
+          <input matInput class="form-control" placeholder="Category Title" [(ngModel)]="data.name" name="title"
+            required>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
@@ -75,13 +87,26 @@
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
-    </div>   
-    
+      <!-- <div class="form">
+        <mat-label>Logo</mat-label>
+        <div style="padding-right: 10px;">
+          <app-material-file-upload (complete)="onFileComplete($event)"></app-material-file-upload>
+        </div>
+      </div> -->
+      <div class="form">
+          <mat-label>Logo</mat-label> &nbsp; &nbsp;
+          <div width="20%">
+           <input type="file" (change)="onFileUpload($event)">
+          </div>
+      </div>
+    </div>
+
     <div *ngIf="router == '/discount'">
       <h3 mat-dialog-title>Add new Discount</h3>
       <div class="form">
         <mat-form-field color="accent">
-          <input matInput class="form-control" placeholder="Discount Title" [(ngModel)]="data.name" name="title" required>
+          <input matInput class="form-control" placeholder="Discount Title" [(ngModel)]="data.name" name="title"
+            required>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
@@ -92,13 +117,101 @@
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
-    </div>  
+      <div class="form">   
+        <div style="width: 30%;">
+          <mat-form-field>
+            <mat-label>Discount on Category</mat-label>
+            <select matNativeControl required>
+              <option value="africaFood">Africa Food</option>
+              <option value="africaFood">Africa Food</option>
+              <option value="africaFood">Africa Food</option>
+              <option value="africaFood">Africa Food</option>
+            </select>
+          </mat-form-field>
+        </div>             
+        <div style="width: 30%;">
+          <mat-form-field>
+            <mat-label>Discount on Menu</mat-label>
+            <select matNativeControl required>
+              <option value="italianMenu">Italian Menu</option>
+              <option value="italianMenu">Italian Menu</option>
+              <option value="italianMenu">Italian Menu</option>
+              <option value="italianMenu">Italian Menu</option>              
+            </select>
+          </mat-form-field>
+        </div>             
+      </div>
+      <div class="form">
+        <mat-label>Order Type</mat-label>&nbsp;&nbsp;
+        <mat-radio-group aria-label="Select an option" [(ngModel)]="data.orderType">
+          <mat-radio-button [value]="1">Delivery</mat-radio-button>
+          <mat-radio-button [value]="2">Pick Up</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="form">
+        <mat-label>Discount Type</mat-label>&nbsp;&nbsp;
+        <mat-radio-group aria-label="Select an option" [(ngModel)]="data.discountType">
+          <mat-radio-button [value]="1">Percentage</mat-radio-button>
+          <mat-radio-button [value]="2">Fixed</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="form">
+        <mat-label>Add On</mat-label>&nbsp;&nbsp;
+        <mat-radio-group aria-label="Select an option" [(ngModel)]="data.addOn">
+          <mat-radio-button [value]="1">Add on Core</mat-radio-button>
+          <mat-radio-button [value]="2">Add on Total</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="form">
+        <div style="width: 20%;">
+          <mat-label>Date Duration</mat-label>&nbsp;&nbsp;
+          <mat-form-field>
+            <mat-label>From Date</mat-label>
+            <input matInput [matDatepicker]="picker1">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div style="width:20%">
+
+        </div>
+        <div style="width: 20%;">
+          <mat-label>Date Duration</mat-label>&nbsp;&nbsp;
+          <mat-form-field>
+            <mat-label>To Date</mat-label>
+            <input matInput [matDatepicker]="picker2">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput class="form-control" placeholder="Applicable Amount" [(ngModel)]="data.applicationAmount"
+            name="Applicable Amount" required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput class="form-control" placeholder="Discount Price" [(ngModel)]="data.discountPrice"
+            name="Discount Price" required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
 
     <div *ngIf="router == '/menu'">
       <h3 mat-dialog-title>Add new Menu</h3>
       <div class="form">
+        <mat-label>Menu Logo</mat-label>
+        <div style="padding-right: 10px;">
+          <app-material-file-upload (complete)="onFileComplete($event)"></app-material-file-upload>
+        </div>
+      </div>
+      <div class="form">
         <mat-form-field color="accent">
-          <input matInput class="form-control" placeholder="Menu Title" [(ngModel)]="data.name" name="title" required>
+          <input matInput class="form-control" placeholder="Menu Name" [(ngModel)]="data.name" name="title" required>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
@@ -109,13 +222,81 @@
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
-    </div>  
+      <div class="form">
+        <mat-label>Menu Status</mat-label>&nbsp;&nbsp;
+        <mat-radio-group aria-label="Select an option" [(ngModel)]="data.orderType">
+          <mat-radio-button [value]="1">Available</mat-radio-button>
+          <mat-radio-button [value]="2">Out Of Stock</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="form">
+        <mat-label>Menu Food Type</mat-label>&nbsp;&nbsp;
+        <mat-radio-group aria-label="Select an option" [(ngModel)]="data.orderType">
+          <mat-radio-button [value]="1">Vegetarian</mat-radio-button>
+          <mat-radio-button [value]="2">Non Vegetarian</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput class="form-control" placeholder="Menu Price" [(ngModel)]="data.menuPrice" name="Menu Price"
+            required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput class="form-control" placeholder="Menu Category" [(ngModel)]="data.category" name="Menu Price"
+            required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput class="form-control" placeholder="Menu Short Code" [(ngModel)]="data.shortCode"
+            name="Menu ShortCode" required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput class="form-control" placeholder="Menu Description" [(ngModel)]="data.description"
+            name="Menu Description" required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
 
     <div *ngIf="router == '/restaurant'">
       <h3 mat-dialog-title>Add new Restaurant</h3>
       <div class="form">
+        <div style="width: 30%;">
+          <mat-label>Restaurant Logo</mat-label>
+           &nbsp; &nbsp;
+            <div width="20%">
+             <input type="file" (change)="onFileRestaurantUpload($event)">
+            </div>
+        </div>
+        <div style="width: 10%;"></div>
+        <div style="width: 30%;">
+          <mat-label>Restaurant Banner</mat-label>
+          <div width="20%">
+            <input type="file" (change)="onFileUpload($event)">
+           </div>
+        </div>
+      </div>
+      <div class="form">
+        <mat-label>Restaurant Food Type</mat-label>&nbsp;&nbsp;
+        <mat-radio-group aria-label="Select an option" [(ngModel)]="data.orderType">
+          <mat-radio-button [value]="1">Vegetarian</mat-radio-button>
+          <mat-radio-button [value]="2">Non Vegetarian</mat-radio-button>
+          <mat-radio-button [value]="3">Both (Vegetarian / Non Vegetarian)</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div class="form">
         <mat-form-field color="accent">
-          <input matInput class="form-control" placeholder="Restaurant Title" [(ngModel)]="data.name" name="title" required>
+          <input matInput class="form-control" placeholder="Restaurant Title" [(ngModel)]="data.name" name="title"
+            required>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
@@ -126,7 +307,7 @@
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
-    </div>  
+    </div>
 
     <!--Contains mat-hint for characters count and has maxLengt set-->
     <!-- <div class="form">
@@ -156,9 +337,9 @@
       </div> -->
 
     <div mat-dialog-actions>
-      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
-        (click)="confirmAdd()">Save</button>
-      <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+      <button mat-button [type]="submit" color="primary" style="width: 40%;" [disabled]="!formControl.valid"
+        [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
+      <button mat-button style="width: 40%;" color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
     </div>
   </form>
 </div>
