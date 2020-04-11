@@ -17,7 +17,7 @@ export class CategoryService {
     //const headers = new HttpHeaders({ 'Content-Type': 'multipart/form-data' });
     //let body = JSON.stringify(Category);     
     const formData = new FormData();
-    formData.append('file', filePath, filePath.name)    
+    formData.append('file', filePath, filePath.name)
     // add the data object
     formData.append('data', JSON.stringify(Category));
     // let body = new FormData();
@@ -25,6 +25,18 @@ export class CategoryService {
     // body.append('data', JSON.stringify(Category));
     console.log(formData);
     return this.http.post<any>(`${this.url}Category/addCateogry`, formData);
+  }
+
+  userLogin(email: any, password: any) {
+    var data = {
+      name: "admin",
+      email: email,
+      password: password,
+      role: "admin",
+      mobileNumber: "0123456789"
+    }
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(`${this.url}User/login`, JSON.stringify(data), {headers: headers});
   }
 
   getCategories(): Observable<Category[]> {

@@ -3,19 +3,39 @@
         <div class="row">
             <div class="col-sm-4 offset-sm-4">
                 <img class="img-fluid mt-5 logo mx-auto d-flex justify-content-center flex-wrap"
-                     src="http://thebignightevent.com/menukart_admin/assets/images/logo.png">
-                <form class="login-form" 
-                      method="post"
-                      action="http://thebignightevent.com/menukart_admin/Login/loginAuthentication">
+                    src="http://thebignightevent.com/menukart_admin/assets/images/logo.png">
+                <form name="form" class="login-form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+                    <!-- <div class="form-group">
+                        <label>User Name</label>
+                        <input type="text" name="userName" class="form-control" [(ngModel)]="model.userName"
+                            #userName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && userName.invalid }"
+                            required>
+                        <div *ngIf="f.submitted && userName.invalid" class="invalid-feedback">
+                            <div *ngIf="userName.errors.required">UserName Name is required</div>
+                        </div>
+                    </div> -->
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Username / E-mail ID</label>
-                        <input type="text" class="form-control" name="username" placeholder="Enter Username/E-mail ID">
+                        <label>Email</label>
+                        <input type="text" name="email" class="form-control" [(ngModel)]="model.email" #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
+                        <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                            <div *ngIf="email.errors.required">Email is required</div>
+                            <div *ngIf="email.errors.email">Email must be a valid email address</div>
+                        </div>
                     </div>
+
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" name="password" placeholder="Enter Password">
+                        <label>Password</label>
+                        <input type="password" name="password" class="form-control" [(ngModel)]="model.password" #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required minlength="6">
+                        <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+                            <div *ngIf="password.errors.required">Password is required</div>
+                            <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+                        </div>
                     </div>
                     <input type="submit" class="btn btn-block btn-danger" value="Login">
+                    <!-- <button class="btn btn-primary mr-1">Login</button> -->
+                    <br>   
+                    &nbsp;<label *ngIf="isInValid" class="danger">Invalid User Credentials</label>
                 </form>
             </div>
         </div>
