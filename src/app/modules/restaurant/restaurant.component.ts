@@ -39,7 +39,7 @@ export class RestaurantComponent implements OnInit {
 
   addNew(issue: RestaurantDto) {
     const dialogRef = this.dialog.open(ResturantComponent, {
-      data: { issue: issue }
+      data: { issue: issue }, width: '350px'
     });
 
     dialogRef.afterClosed().subscribe(result => {

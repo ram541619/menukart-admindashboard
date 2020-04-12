@@ -3,6 +3,7 @@ import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/m
 import { MenuService } from './menu.service';
 import { MenuDto } from 'src/app/classmodule/menu/menu';
 import { AddComponent } from 'src/app/dialogs/add/add.component';
+import { MenudailogComponent } from 'src/app/dialogs/menudailog/menudailog.component';
 
 @Component({
   selector: 'app-menu',
@@ -34,8 +35,8 @@ export class MenuComponent implements OnInit {
   }
 
   addNew(issue: MenuDto) {
-    const dialogRef = this.dialog.open(AddComponent, {
-      data: { issue: issue }
+    const dialogRef = this.dialog.open(MenudailogComponent, {
+      data: { issue: issue }, width: '60%'
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -44,8 +45,14 @@ export class MenuComponent implements OnInit {
         // For add we're just pushing a new row inside DataService
         // this.exampleDatabase.dataChange.value.push(this.dataService.getDialogData());
         // this.refreshTable();
+        this.loadData();
+        this.refreshTable();
       }
     });
+  }
+
+  private refreshTable() {
+    this.paginator._changePageSize(this.paginator.pageSize);
   }
 
   startEdit(tax: MenuDto) {

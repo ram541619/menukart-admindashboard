@@ -6,7 +6,7 @@ import { DashboardComponent } from 'src/app/modules/dashboard/dashboard.componen
 import { RouterModule } from '@angular/router';
 // import { PostsComponent } from 'src/app/modules/posts/posts.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { MatSidenavModule, MatDividerModule, MatCardModule, MatPaginatorModule, MatTableModule, MatTreeModule, MatDialogModule, MatFormFieldModule, MatButtonModule, MatIconModule, MatToolbarModule, MatInputModule, MatTooltipModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatChipsModule, MatGridListModule, MatProgressBarModule, MatSelectModule } from '@angular/material';
+import { MatSidenavModule, MatDividerModule, MatCardModule, MatPaginatorModule, MatTableModule, MatTreeModule, MatDialogModule, MatFormFieldModule, MatButtonModule, MatIconModule, MatToolbarModule, MatInputModule, MatTooltipModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatChipsModule, MatGridListModule, MatProgressBarModule, MatSelectModule, MatCheckboxModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DashboardService } from 'src/app/modules/dashboard.service';
 import { CategoryComponent } from 'src/app/modules/category/category.component';
@@ -15,6 +15,9 @@ import { EditComponent } from 'src/app/dialogs/edit/edit.component';
 import { DeleteComponent } from 'src/app/dialogs/delete/delete.component';
 import { MaterialFileUploadComponent } from 'src/app/material-file-upload/material-file-upload.component';
 import { ResturantComponent } from 'src/app/dialogs/resturant/resturant.component';
+import { TaxdailogComponent } from 'src/app/dialogs/taxdailog/taxdailog.component';
+import { MenudailogComponent } from 'src/app/dialogs/menudailog/menudailog.component';
+import { DiscountdailogComponent } from 'src/app/dialogs/discountdailog/discountdailog.component';
 
 @NgModule({
   declarations: [
@@ -25,14 +28,20 @@ import { ResturantComponent } from 'src/app/dialogs/resturant/resturant.componen
     EditComponent,
     DeleteComponent,
     ResturantComponent,
-    MaterialFileUploadComponent
+    MaterialFileUploadComponent,
+    MenudailogComponent,
+    DiscountdailogComponent,
+    TaxdailogComponent
     // PostsComponent
   ],
   entryComponents: [
     AddComponent,
     EditComponent,
     DeleteComponent,
-    ResturantComponent
+    ResturantComponent,
+    MenudailogComponent,
+    DiscountdailogComponent,
+    TaxdailogComponent
   ],
   imports: [
     CommonModule,
@@ -60,7 +69,8 @@ import { ResturantComponent } from 'src/app/dialogs/resturant/resturant.componen
     MatChipsModule,
     MatGridListModule,
     MatProgressBarModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCheckboxModule
   ],
   exports: [
     CommonModule,
@@ -92,7 +102,11 @@ import { ResturantComponent } from 'src/app/dialogs/resturant/resturant.componen
     MatChipsModule,
     MatGridListModule,
     MatProgressBarModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCheckboxModule,
+    MenudailogComponent,
+    DiscountdailogComponent,
+    TaxdailogComponent
   ],
   providers: [
     DashboardService

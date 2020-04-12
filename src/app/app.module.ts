@@ -18,6 +18,9 @@ import { MenulistComponent } from './modules/menu/menulist/menulist.component';
 import { RestaurantlistComponent } from './modules/restaurant/restaurantlist/restaurantlist.component';
 import { DiscountlistComponent } from './modules/discount/discountlist/discountlist.component';
 import { ReportslistComponent } from './modules/reports/reportslist/reportslist.component';
+// import { MenudailogComponent } from './dialogs/menudailog/menudailog.component';
+// import { TaxdailogComponent } from './dialogs/taxdailog/taxdailog.component';
+// import { DiscountdailogComponent } from './dialogs/discountdailog/discountdailog.component';
 // import { ResturantComponent } from './dialogs/resturant/resturant.component';
 // import { MaterialFileUploadComponent } from './material-file-upload/material-file-upload.component';
 
@@ -38,6 +41,9 @@ import { ReportslistComponent } from './modules/reports/reportslist/reportslist.
     RestaurantlistComponent,
     DiscountlistComponent,
     ReportslistComponent,
+    // MenudailogComponent,
+    // TaxdailogComponent,
+    // DiscountdailogComponent,
     //ResturantComponent,
     // MaterialFileUploadComponent    
   ],

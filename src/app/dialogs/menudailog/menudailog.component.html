@@ -1,0 +1,79 @@
+<mat-toolbar>
+    <h3 mat-dialog-title>Add new Menu</h3>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onNoClick()" tabIndex="-1">
+        <mat-icon>clear</mat-icon>
+    </button>
+</mat-toolbar>
+<form (ngSubmit)="submit(formControl)" #formControl="ngForm">
+    <mat-grid-list cols="2" rowHeight="360px">
+        <mat-grid-tile>
+            <div class="controles-container">
+                <mat-form-field>
+                    <input matInput placeholder="Menu Name" [(ngModel)]="data.name" name="title" required>
+                    <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Menu DisplayName" [(ngModel)]="data.displayName" name="displayName"
+                        required>
+                    <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Menu Price" [(ngModel)]="data.menuPrice" name="Menu Price" required
+                        type="number">
+                    <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-label>Menu Status: </mat-label>
+                <mat-radio-group name="status" ngModel required>
+                    <mat-radio-button value="true">Available</mat-radio-button>
+                    <mat-radio-button value="false">Out of Stock</mat-radio-button>
+                </mat-radio-group>
+                
+                <div class="custom-file">
+                    <!-- <label>Menu Logo</label> &nbsp; &nbsp; -->
+                    <div class="custom-file">
+                        <input id="logo" type="file" class="custom-file-input" type="file"
+                         (change)="onFileRestaurantUpload($event)">
+                        <label for="logo" class="custom-file-label">Choose Menu Logo...</label>
+                    </div>                                        
+                </div>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div class="controles-container">
+                <mat-form-field>
+                    <input matInput placeholder="Menu Short Code" [(ngModel)]="data.shortCode" name="Menu ShortCode"
+                        required>
+                    <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Menu Description" [(ngModel)]="data.description"
+                        name="Menu Description" required>
+                    <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-select name="category" placeholder="Category" ngModel required>
+                        <mat-option>None</mat-option>
+                        <ng-container *ngFor="let department of categoryList">
+                            <mat-option value="{{department.id}}">{{department.name}}</mat-option>
+                        </ng-container>
+                    </mat-select>
+                </mat-form-field>
+                <mat-label>Menu Food Type: </mat-label>
+                <mat-radio-group name="foodType" ngModel required>
+                    <mat-radio-button value="1">Vegetarian</mat-radio-button>
+                    <mat-radio-button value="2">Non-Vegetarian</mat-radio-button>
+                </mat-radio-group>
+                <div class="button-row">
+                    <button mat-button [type]="submit" color="primary" [disabled]="!formControl.valid"
+                        [mat-dialog-close]="1">Save</button>
+                    <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</form>
+
+<!-- Copyright 2019 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->
