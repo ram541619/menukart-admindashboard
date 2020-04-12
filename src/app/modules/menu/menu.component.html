@@ -7,6 +7,30 @@
     </button>
   </mat-toolbar>
   
+  <!--filter start-->
+  <div fxLayout="row" fxLayoutGap="15px">
+    <mat-form-field fxFlex="20"  fxFlexOffset="3px">
+      <mat-label>Search By</mat-label>
+      <mat-select disableOptionCentering [(ngModel)]="selectedoption" matTooltip="Select Search By">
+        <mat-option *ngFor="let option of searchOptions" [value]="option.id">{{ option.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field  fxFlex="50">
+      <input matInput type="text" #filterText [(ngModel)]="searchText" placeholder="Search Text"
+      (keydown.enter)="doFilter(selectedoption,searchText)" (keypress)="omit_special_char($event)" matTooltip="Enter Search Text">
+    </mat-form-field>
+    <div>
+      <button type="button" mat-raised-button color="primary" class="filterButtonClass"
+        style="text-align:center;margin-top: 5px;"
+        (click)="doFilter(selectedoption,searchText)">
+        <mat-icon>search</mat-icon>Search
+      </button>
+    </div>
+  </div>
+
+  <!--filter end-->
   <!-- <div class="container mat-elevation-z8"> -->
   
     <!-- <div class="form">
@@ -23,30 +47,30 @@
       <!-- ID Column -->
       <ng-container matColumnDef="menuLogo">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Menu Logo</mat-header-cell>
-        <mat-cell *matCellDef="let row" > <img [src]="'http://13.233.0.160:8080/menukart/downloadFile/'+row.cateogry?.fileName" width="25%"></mat-cell>
+        <mat-cell *matCellDef="let row" > <img src="assets/images/products/1.jpg" width="25%"></mat-cell>
       </ng-container>
   
-      <ng-container matColumnDef="menuStatus">
+      <ng-container matColumnDef="avilable">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.avilable ? 'avilable': 'Out Of Stock'}}</mat-cell>
       </ng-container>
   
-      <ng-container matColumnDef="menuFoodType">
+      <ng-container matColumnDef="foodType">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Menu Food Type</mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.foodType}}</mat-cell>
       </ng-container>
   
-      <ng-container matColumnDef="menuName">
+      <ng-container matColumnDef="onlineDisplayName">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Menu Name</mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.onlineDisplayName}}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="menuCategory">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Category</mat-header-cell>
+      <ng-container matColumnDef="cateogry">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Menu Category</mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.cateogry?.displayName}}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="menuShortCode">
+      <ng-container matColumnDef="shortCode">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Menu Short Code</mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.shortCode}}</mat-cell>
       </ng-container>

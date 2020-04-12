@@ -14,7 +14,7 @@ export class RestaurantComponent implements OnInit {
   model: RestaurantDto = new RestaurantDto;
   // mainModel: Categorymodel = new Categorymodel;
   restaurantList: RestaurantDto[];
-  displayedColumns: string[] = ['restaurantLogo', 'restaurantBanner', 'restaurantFoodType', 'restaurantName', 'restaurantEmail', 'restaurantContact', 'restaurantStatus', 'actions'];
+  displayedColumns: string[] = ['restaurantLogo', 'restaurantFoodType', 'restaurantName', 'restaurantEmail', 'restaurantContact', 'restaurantStatus', 'actions'];
   dataSource: MatTableDataSource<RestaurantDto>;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -39,7 +39,7 @@ export class RestaurantComponent implements OnInit {
 
   addNew(issue: RestaurantDto) {
     const dialogRef = this.dialog.open(ResturantComponent, {
-      data: { issue: issue }, width: '350px'
+      data: { issue: issue }, width: '80%'
     });
 
     dialogRef.afterClosed().subscribe(result => {

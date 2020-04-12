@@ -3,6 +3,7 @@ import { TaxDto, TaxModal, SaveTaxDto } from 'src/app/classmodule/tax/tax';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { TaxService } from './tax.service';
 import { AddComponent } from 'src/app/dialogs/add/add.component';
+import { TaxdailogComponent } from 'src/app/dialogs/taxdailog/taxdailog.component';
 
 @Component({
   selector: 'app-tax',
@@ -34,8 +35,8 @@ export class TaxComponent implements OnInit {
   }
 
   addNew(issue: SaveTaxDto) {
-    const dialogRef = this.dialog.open(AddComponent, {
-      data: { issue: issue }
+    const dialogRef = this.dialog.open(TaxdailogComponent, {
+      data: { issue: issue }, width: '80%'
     });
 
     dialogRef.afterClosed().subscribe(result => {

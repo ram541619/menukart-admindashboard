@@ -1,1 +1,56 @@
-<p>taxdailog works!</p>
+<mat-toolbar>
+    <h3 mat-dialog-title>Add new Tax</h3>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onNoClick()" tabIndex="-1">
+        <mat-icon>clear</mat-icon>
+    </button>
+</mat-toolbar>
+<form (ngSubmit)="submit(formControl)" #formControl="ngForm">
+    <mat-grid-list cols="2" rowHeight="360px">
+        <mat-grid-tile>
+            <div class="controles-container">
+                <mat-form-field color="accent">
+                    <input matInput class="form-control" placeholder="Tax Title" [(ngModel)]="data.taxTitle"
+                        name="title" required>
+                    <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-form-field color="accent">
+                    <input matInput class="form-control" placeholder="Display Name" [(ngModel)]="data.displayName"
+                        name="displayName" required>
+                    <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-label>Tax Type</mat-label>&nbsp;&nbsp;
+                <mat-radio-group aria-label="Select an option" name="taxType" ngModel required>
+                    <mat-radio-button [value]="1">Forward</mat-radio-button>
+                    <mat-radio-button [value]="2">Backward</mat-radio-button>
+                </mat-radio-group>
+
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div class="controles-container">
+                <mat-label>Order Type</mat-label>&nbsp;&nbsp;
+                <mat-checkbox class="example-margin" name='delivery' required>Delivery</mat-checkbox>
+                &nbsp;
+                <mat-checkbox class="example-margin" name="pickUp" required>Pick Up
+                </mat-checkbox>
+                <mat-form-field>
+                    <input matInput placeholder="Tax Amount" type="number" [(ngModel)]="data.taxAmount" name="taxAmount"
+                        required>
+                    <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <textarea matInput #input placeholder="Tax Description" [(ngModel)]="data.taxDescription"
+                        name="taxDescription" required></textarea>
+                    <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+
+                <div class="button-row">
+                    <button mat-button [type]="submit" color="primary" [disabled]="!formControl.valid"
+                        [mat-dialog-close]="1">Save</button>
+                    <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</form>

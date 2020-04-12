@@ -26,12 +26,6 @@
         <mat-cell *matCellDef="let row" >
           <img [src]="row.fileName" width="35%"></mat-cell>
       </ng-container>
-  
-      <ng-container matColumnDef="restaurantBanner">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Restaurant Banner</mat-header-cell>
-        <mat-cell *matCellDef="let row"> <img src="assets/images/products/1.jpg" width="25%"></mat-cell>
-      </ng-container>
-  
       <ng-container matColumnDef="restaurantFoodType">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Food Type</mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.foodType?.name}}</mat-cell>

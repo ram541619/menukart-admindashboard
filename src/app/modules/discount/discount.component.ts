@@ -3,6 +3,7 @@ import { DiscountDto } from 'src/app/classmodule/discount/discount';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { DiscountService } from './discount.service';
 import { AddComponent } from 'src/app/dialogs/add/add.component';
+import { DiscountdailogComponent } from 'src/app/dialogs/discountdailog/discountdailog.component';
 
 @Component({
   selector: 'app-discount',
@@ -33,8 +34,8 @@ export class DiscountComponent implements OnInit {
   }
 
   addNew(issue: DiscountDto) {
-    const dialogRef = this.dialog.open(AddComponent, {
-      data: { issue: issue }
+    const dialogRef = this.dialog.open(DiscountdailogComponent, {
+      data: { issue: issue }, width: '80%'
     });
 
     dialogRef.afterClosed().subscribe(result => {

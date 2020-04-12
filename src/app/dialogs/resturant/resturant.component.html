@@ -1,216 +1,90 @@
-<div class="container">
-    <form class="mat-dialog-content" (ngSubmit)="submit(formControl)" #formControl="ngForm">
-        <div>
-            <h3 mat-dialog-title>Add new Restaurant</h3>
-            <div class="form">
-                <div style="width: 30%;">
-                    <mat-label>Restaurant Logo</mat-label>
-                    &nbsp; &nbsp;
-                    <div width="20%">
-                        <input type="file" (change)="onFileRestaurantUpload($event)">
-                    </div>
-                </div>
-                <div style="width: 10%;"></div>
-                <div style="width: 30%;">
-                    <mat-label>Restaurant Banner</mat-label>
-                    <div width="20%">
-                        <input type="file" (change)="onFileBannerUpload($event)">
-                    </div>
-                </div>
-            </div>
-            <br />
-            <mat-label>Restaurant Food Type</mat-label>&nbsp;&nbsp;
-            <div class="form">
-                <div class="custom-control custom-radio">
-                    <input id="veg" type="radio" class="custom-control-input" value="1" name="veg" ngModel required>
-                    <label class="custom-control-label" for="veg">Vegetarian</label>&nbsp;&nbsp;
-                </div>
+<mat-toolbar>
+    <h3 mat-dialog-title>Add new Restaurant</h3>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onNoClick()" tabIndex="-1">
+        <mat-icon>clear</mat-icon>
+    </button>
+</mat-toolbar>
+<form (ngSubmit)="submit(formControl)" #formControl="ngForm">
 
-                <div class="custom-control custom-radio">
-                    <input id="nonveg" type="radio" class="custom-control-input" value="2" name="veg" ngModel required>
-                    <label class="custom-control-label" for="nonveg">Non Vegetarian</label>&nbsp;&nbsp;
-                </div>
-                <div class="custom-control custom-radio">
-                    <input id="both" type="radio" class="custom-control-input" value="3" name="veg" ngModel required>
-                    <label class="custom-control-label" for="both">Both (Vegetarian / Non Vegetarian)</label>
-                </div>
-            </div>
+    <mat-grid-list cols="2" rowHeight="360px">
+        <mat-grid-tile>
+            <div class="controles-container">
+                <br>
+                <span>Restaurant Logo</span>&nbsp;&nbsp;
+                <input id="logo" type="file" type="file" (change)="onFileRestaurantUpload($event)">
 
 
-            <div class="form">
-                <div class="width:40%">
-                    <mat-form-field color="accent">
-                        <input matInput class="form-control" placeholder="Restaurant Name" [(ngModel)]="data.name"
-                            name="title" required>
-                        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-                    </mat-form-field>
-                </div>
-                <div class="margin_fifty">
-                    <mat-form-field color="accent">
-                        <input matInput class="form-control" placeholder="Restaurant DisplayName"
-                            [(ngModel)]="data.displayName" name="displayName" required>
-                        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="form">
-                <div class="width:40%">
-                    <mat-form-field color="accent">
-                        <input matInput class="form-control" placeholder="Restaurant Current Status"
-                            [(ngModel)]="data.currentStatus" name="currentStatus" required>
-                        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-                    </mat-form-field>
-                </div>
-                <div class="margin_fifty">
-                    <mat-form-field color="accent">
-                        <input matInput class="form-control" placeholder="Restaurant Contact Number"
-                            [(ngModel)]="data.contactNumber" name="contactNumber" required>
-                        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="form">
-                <div class="width:40%">
-                    <mat-form-field color="accent">
-                        <input matInput class="form-control" placeholder="Restaurant Password"
-                            [(ngModel)]="data.password" name="title" required>
-                        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-                    </mat-form-field>
-                </div>
-                <div class="margin_fifty">
-                    <mat-form-field color="accent">
-                        <input matInput class="form-control" placeholder="Restaurant Re-Enter Password"
-                            [(ngModel)]="data.reenterPassword" name="displayName" required>
-                        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="form">
-                <div class="width:40%">
-                    <div class="form">
-                        <mat-form-field color="accent">
-                            <textarea matInput #input class="form-control" placeholder="Restaurant Details"
-                                [(ngModel)]="data.restaurantDetails" name="restaurantDetails" required></textarea>
-                            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="margin_fifty">
-                    <div class="form">
-                        <mat-form-field color="accent">
-                            <textarea matInput #input class="form-control" placeholder="Restaurant Address"
-                                [(ngModel)]="data.restaurantAddress" name="restaurantAddress" required></textarea>
-                            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-                        </mat-form-field>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 col-12">
-                <label for="restaurant_address">Restaurant Opening &amp; Closing Hours</label>
-                <table class="table table-bordered">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>
-                                Days
-                            </th>
-                            <th>
-                                Opening Hours
-                            </th>
-                            <th>
-                                Opening Minutes
-                            </th>
-                            <th>
-                                Closing Hours
-                            </th>
-                            <th>
-                                Closing Minutes
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th>Monday</th>
-                            <td>
-                                <select class="form-control" name="openingHours" ngModel required>
-                                    <option value="0am">00 AM</option>
-                                    <option value="1am">01 AM</option>
-                                    <option value="2am">02 AM</option>
-                                    <option value="3am">03 AM</option>
-                                    <option value="4am">04 AM</option>
-                                    <option value="5am">05 AM</option>
-                                    <option value="6am">06 AM</option>
-                                    <option value="7am">07 AM</option>
-                                    <option value="8am">08 AM</option>
-                                    <option value="9am">09 AM</option>
-                                    <option value="10am">10 AM</option>
-                                    <option value="11am">11 AM</option>
-                                    <option value="12am">12 AM</option>
-                                </select>
+                <mat-form-field>
+                    <input matInput placeholder="Restaurant Name" [(ngModel)]="data.name" name="title" required>
+                    <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <!-- <mat-form-field>
+                    <input matInput placeholder="Restaurant DisplayName" [(ngModel)]="data.displayName"
+                        name="displayName" required>
+                    <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field> -->
 
-                            </td>
-                            <td>                                
-                                    <select class="form-control"  name="openingMinutes" ngModel required>
-                                    <option value="0min">00 Min</option>
-                                    <option value="5min">05 Min</option>
-                                    <option value="10min">10 Min</option>
-                                    <option value="15min">15 Min</option>
-                                    <option value="20min">20 Min</option>
-                                    <option value="25min">25 Min</option>
-                                    <option value="30min">30 Min</option>
-                                    <option value="35min">35 Min</option>
-                                    <option value="40min">40 Min</option>
-                                    <option value="45min">45 Min</option>
-                                    <option value="50min">50 Min</option>
-                                    <option value="55min">55 Min</option>
-                                    <option value="60min">60 Min</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="form-control"  name="closingHours" ngModel required>
-                                    <option selected="" value="0pm">00 PM</option>
-                                    <option value="1pm">01 PM</option>
-                                    <option value="2pm">02 PM</option>
-                                    <option value="3pm">03 PM</option>
-                                    <option value="4pm">04 PM</option>
-                                    <option value="5pm">05 PM</option>
-                                    <option value="6pm">06 PM</option>
-                                    <option value="7pm">07 PM</option>
-                                    <option value="8pm">08 PM</option>
-                                    <option value="9pm">09 PM</option>
-                                    <option value="10pm">10 PM</option>
-                                    <option value="11pm">11 PM</option>
-                                    <option value="12pm">12 PM</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="form-control"  name="closingMinutes" ngModel required>
-                                    <option selected="" value="0min">00 Min</option>
-                                    <option value="5min">05 Min</option>
-                                    <option value="10min">10 Min</option>
-                                    <option value="15min">15 Min</option>
-                                    <option value="20min">20 Min</option>
-                                    <option value="25min">25 Min</option>
-                                    <option value="30min">30 Min</option>
-                                    <option value="35min">35 Min</option>
-                                    <option value="40min">40 Min</option>
-                                    <option value="45min">45 Min</option>
-                                    <option value="50min">50 Min</option>
-                                    <option value="55min">55 Min</option>
-                                    <option value="60min">60 Min</option>
-                                </select>
-                            </td>
-                        </tr>                        
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                <mat-form-field>
+                    <input matInput placeholder="Restaurant Contact Number" [(ngModel)]="data.contactNumber"
+                        name="contactNumber">
+                    <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Restaurant Password" [(ngModel)]="data.password" type="password"
+                        name="title">
+                </mat-form-field>
 
-        <div mat-dialog-actions>
-            <button mat-button [type]="submit" color="primary" style="width: 40%;" [disabled]="!formControl.valid"
-                [mat-dialog-close]="1">Save</button>
-            <button mat-button style="width: 40%;" color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
-        </div>
-    </form>
-</div>
+                <mat-form-field>
+                    <textarea matInput #input placeholder="Restaurant Details" [(ngModel)]="data.restaurantDetails"
+                        name="restaurantDetails"></textarea>
+                </mat-form-field>
+                <mat-label>Food Type: </mat-label>
+                <mat-radio-group name="foodType" ngModel required>
+                    <mat-radio-button value="1">Vegetarian</mat-radio-button>
+                    <mat-radio-button value="2">Non-Vegetarian</mat-radio-button>
+                    <mat-radio-button value="3">Both</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div class="controles-container">
+                <mat-form-field>
+                    <mat-select name="restaurantStatus" placeholder="Restaurant Current Status" ngModel>
+                        <mat-option>None</mat-option>
+                        <mat-option value="1">Active</mat-option>
+                        <mat-option value="2">On-Boarding</mat-option>
+                        <mat-option value="3">Banned</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-select name="menu" placeholder="Restaurant Cuisine" ngModel required>
+                        <mat-option>None</mat-option>
+                        <ng-container *ngFor="let menu of menuList">
+                            <mat-option value="{{menu.id}}">{{menu.name}}</mat-option>
+                        </ng-container>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Restaurant Email" [(ngModel)]="data.email" name="email">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput class="form-control" type="password" placeholder="Restaurant Re-Enter Password">
+                </mat-form-field>
+                <mat-form-field>
+                    <textarea matInput #input class="form-control" placeholder="Restaurant Address"
+                        [(ngModel)]="data.restaurantAddress" name="restaurantAddress"></textarea>
+                </mat-form-field>
+                <div class="button-row">
+                    <button mat-button [type]="submit" color="primary" [disabled]="!formControl.valid"
+                        [mat-dialog-close]="1">Save</button>
+                    <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</form>
+
+<!-- Copyright 2019 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

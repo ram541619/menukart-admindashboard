@@ -2,6 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { RestaurantService } from 'src/app/modules/restaurant/restaurant.service';
 import { FormControl, Validators, NgForm } from '@angular/forms';
+import { MenuService } from 'src/app/modules/menu/menu.service';
+import { MenuDto } from 'src/app/classmodule/menu/menu';
 
 @Component({
   selector: 'app-resturant',
@@ -10,10 +12,17 @@ import { FormControl, Validators, NgForm } from '@angular/forms';
 })
 export class ResturantComponent implements OnInit {
   restaurantFilePath: File = null;
+  menuList: any[];
   foodType: Number;
   constructor(public dialogRef: MatDialogRef<ResturantComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public restaurantService: RestaurantService) { }
+    public restaurantService: RestaurantService,
+    public menuServices: MenuService) { 
+      menuServices.getMenu().subscribe(response=>{
+        this.menuList = response;
+        console.log(this.menuList);
+      });
+    }
 
   formControl = new FormControl('', [
     Validators.required
@@ -31,8 +40,7 @@ export class ResturantComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  onFileRestaurantUpload(event){
-    debugger
+  onFileRestaurantUpload(event){    
     this.restaurantFilePath = <File>event.target.files[0];
   }
 
@@ -40,12 +48,12 @@ export class ResturantComponent implements OnInit {
     let restaurant = {
       resturant: {
         name: this.data.name,
-        displayName: this.data.displayName,
+        displayName: this.data.name,
         foodType: {
-          id: form.value.veg
+          id: parseInt(form.value.foodType)
         },
         menu: {
-          id: 4
+          id: parseInt(form.value.menu)
         },
         openClose: [{
           day: "day1",

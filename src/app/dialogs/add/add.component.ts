@@ -84,91 +84,7 @@ export class AddComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  public confirmAdd(form: NgForm): void {   
-    if (this.router === '/discount') {
-      let discount = {
-        discount: {
-          discountTitle: this.data.name,
-          discountOnCateogry: {
-            id: 2
-          },
-          discountOnMenu: {
-            id: 2
-          },
-          orderType: {
-            id: 2
-          },
-          addOn: {
-            id: 2
-          },
-          applicableAmount: this.data.applicationAmount,
-          discountPrice: this.data.discountPrice,
-          formDate: "2020-03-23",
-          toDate: "2020-03-26"
-        }
-      }
-      this.discountService.addNewDiscount(discount)
-        .subscribe(response => {
-          console.log(response);
-        });
-
-    }
-    if (this.router === '/restaurant') {
-      let restaurant = {
-        resturant: {
-          name: "Roohani Biryani",
-          displayName: "Roohani Biryani",
-          foodType: {
-            id: 1
-          },
-          menu: {
-            id: 4
-          },
-          openClose: [{
-            day: "day1",
-            openingHour: "9:00",
-            openingMin: "30AM",
-            closeHour: "10:00",
-            closeMin: "30PM"
-          }, {
-            day: "day1",
-            openingHour: "10:00",
-            openingMin: "30AM",
-            closeHour: "10:00",
-            closeMin: "30AM"
-          }]
-        }
-      }
-      debugger
-      this.restaurantService.addNewRestaurant(this.restaurantFilePath, restaurant)
-        .subscribe(response => {
-          console.log(response);
-        });
-    }
-
-    if (this.router === '/menu') {
-      debugger
-      console.log(this.foodTypeSelected);
-      let menu = {
-        menu:
-        {
-          name: this.data.name,
-          shortCode: this.data.shortCode,
-          price: this.data.menuPrice,
-          description: this.data.description,
-          onlineDisplayName: this.data.displayName,
-          isAvilable: "true",
-          cateogry: {
-            id: 1
-          }
-        }
-      }
-      console.log(this.data);
-      this.menuService.addNewMenu(menu)
-        .subscribe(response => {
-          console.log(response);
-        });
-    }
+  public confirmAdd(form: NgForm): void {           
     if (this.router === '/category') {
       let category = {
         cateogry: {
@@ -181,28 +97,7 @@ export class AddComponent implements OnInit {
           console.log(response);
         });
     }
-
-    if (this.router === '/tax') {
-      //console.log(this.data.orderType);
-      let tax = {
-        tax: {
-          taxTitle: this.data.taxTitle,
-          displayName: this.data.displayName,
-          taxAmount: this.data.taxAmount,
-          taxDescription: this.data.displayName,
-          taxType: {
-            id: 1
-          },
-          orderType: {
-            id: 1
-          }
-        }
-      }
-      this.taxService.addNewTax(tax)
-        .subscribe(response => {
-          console.log(response);
-        });
-    }
+  
   }
 
 }
