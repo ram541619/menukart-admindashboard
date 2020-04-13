@@ -58,7 +58,7 @@
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field>
-                    <mat-select name="menu" placeholder="Restaurant Cuisine" ngModel required>
+                    <mat-select name="menu" placeholder="Restaurant Cuisine" ngModel>
                         <mat-option>None</mat-option>
                         <ng-container *ngFor="let menu of menuList">
                             <mat-option value="{{menu.id}}">{{menu.name}}</mat-option>

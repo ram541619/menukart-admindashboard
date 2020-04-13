@@ -15,17 +15,17 @@
                 </mat-form-field>
                 <mat-form-field>
                     <input matInput class="form-control" placeholder="Applicable Amount"
-                        [(ngModel)]="data.applicationAmount" type="number" name="Applicable Amount" required>
+                        [(ngModel)]="data.applicationAmount" type="number" name="Applicable Amount">
                     <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
                 </mat-form-field>
                 <mat-label>Order Type</mat-label>&nbsp;&nbsp;
-                <mat-checkbox class="example-margin" name='delivery' ngModal required>Delivery</mat-checkbox>
+                <mat-checkbox class="example-margin" name='delivery' ngModal>Delivery</mat-checkbox>
                 &nbsp;
-                <mat-checkbox class="example-margin" name="pickUp" ngModal required>Pick Up
+                <mat-checkbox class="example-margin" name="pickUp" ngModal>Pick Up
                 </mat-checkbox>
                 <br> <br>
                 <mat-label>Add On</mat-label>&nbsp;&nbsp;
-                <mat-radio-group aria-label="Select an option"  name="addOn" ngModel required>
+                <mat-radio-group aria-label="Select an option"  name="addOn" ngModel>
                     <mat-radio-button [value]="1">Add on Core</mat-radio-button>
                     <mat-radio-button [value]="2">Add on Total</mat-radio-button>
                 </mat-radio-group>
@@ -41,7 +41,7 @@
             <div class="controles-container">
                 <mat-form-field>
                     <mat-label>Discount on Category</mat-label>
-                    <mat-select name="category" placeholder="Category" ngModel required>
+                    <mat-select name="category" placeholder="Category" ngModel>
                         <mat-option>None</mat-option>
                         <ng-container *ngFor="let department of categoryList">
                             <mat-option value="{{department.id}}">{{department.name}}</mat-option>
@@ -50,7 +50,7 @@
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>Discount on Menu</mat-label>
-                    <mat-select name="menu" placeholder="Menu" ngModel required>
+                    <mat-select name="menu" placeholder="Menu" ngModel>
                         <mat-option>None</mat-option>
                         <ng-container *ngFor="let menu of menuList">
                             <mat-option value="{{menu.id}}">{{menu.name}}</mat-option>
@@ -60,19 +60,18 @@
                 <mat-form-field>
                     <input matInput class="form-control" type="number" placeholder="Discount Price"
                         [(ngModel)]="data.discountPrice" name="Discount Price"
-                        type="number"
-                        required>
+                        type="number">
                     <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
                 </mat-form-field>                
 
                 <mat-label>Date Duration</mat-label>&nbsp;&nbsp;
                 <mat-form-field>                    
-                    <input matInput [matDatepicker]="picker2"  name='datepicker1' placeholder="To Date" required>
+                    <input matInput [matDatepicker]="picker2"  name='datepicker1' placeholder="To Date">
                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2></mat-datepicker>
                 </mat-form-field>
                 <mat-form-field>                    
-                    <input matInput [matDatepicker]="picker1" [value]="data.toDate" name='datepicker2' placeholder="From Date"  required> 
+                    <input matInput [matDatepicker]="picker1" [value]="data.toDate" name='datepicker2' placeholder="From Date" > 
                     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                     <mat-datepicker #picker1></mat-datepicker>
                 </mat-form-field>

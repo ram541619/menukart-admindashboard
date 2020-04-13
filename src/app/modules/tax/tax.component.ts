@@ -36,7 +36,7 @@ export class TaxComponent implements OnInit {
 
   addNew(issue: SaveTaxDto) {
     const dialogRef = this.dialog.open(TaxdailogComponent, {
-      data: { issue: issue }, width: '80%'
+      data: { issue: issue }, width: '60%'
     });
 
     dialogRef.afterClosed().subscribe(result => {
