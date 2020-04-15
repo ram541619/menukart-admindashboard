@@ -15,14 +15,16 @@
                 </mat-form-field>
                 <mat-form-field>
                     <input matInput class="form-control" placeholder="Applicable Amount"
-                        [(ngModel)]="data.applicationAmount" type="number" name="Applicable Amount">
+                        [(ngModel)]="data.applicationAmount" type="number" name="ApplicableAmount">
                     <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
                 </mat-form-field>
                 <mat-label>Order Type</mat-label>&nbsp;&nbsp;
-                <mat-checkbox class="example-margin" name='delivery' ngModal>Delivery</mat-checkbox>
+                <!-- <mat-checkbox class="example-margin" name='delivery' ngModal>Delivery</mat-checkbox>
                 &nbsp;
                 <mat-checkbox class="example-margin" name="pickUp" ngModal>Pick Up
-                </mat-checkbox>
+                </mat-checkbox> -->
+                <input type="checkbox" class="example-margin" name="delivery" [ngModel]="data.delivery">
+                <input type="checkbox" class="example-margin" name="pickUp" [ngModel]="data.pickUp">                
                 <br> <br>
                 <mat-label>Add On</mat-label>&nbsp;&nbsp;
                 <mat-radio-group aria-label="Select an option"  name="addOn" ngModel>

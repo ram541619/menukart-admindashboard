@@ -24,11 +24,12 @@ export class AddComponent implements OnInit {
   isOrderType: boolean;
   isFoodType: boolean;
   orderType: string[] = ['Available', 'Out of Stock'];
-  foodType: string[] = ['Vegetarian', 'Non-Vegetarian'];  
+  foodType: string[] = ['Vegetarian', 'Non-Vegetarian'];
   foodTypeSelected: string;
   orderTypeSelected: string;
   filter: any;
   groupOptionsSelect: Array<any>;
+  showSpinner: boolean = false;
   constructor(public dialogRef: MatDialogRef<AddComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public taxService: TaxService,
@@ -50,42 +51,29 @@ export class AddComponent implements OnInit {
   ngOnInit() {
     console.log();
   }
-  onFileComplete(data: any) {
-    debugger
-    this.filePath = <File>data.target.files[0];
-    console.log(data); // We just print out data bubbled up from event emitter.
-  }
-  onFileUpload(event){
-     debugger
+
+  onFileUpload(event) {
     this.categorySelectedFile = <File>event.target.files[0];
     console.log(event); // We just print out data bubbled up from event emitter.
   }
-  onFileRestaurantUpload(event){
-    debugger
-    this.restaurantFilePath = <File>event.target.files[0];
-  }
-  onFileBannerUpload(event){
-    this.filePath = <File>event.target.files[0];
-    console.log(event); // We just print out data bubbled up from event emitter.
-  }
- 
+
   getErrorMessage() {
     return this.formControl.hasError('required') ? 'Required field' :
       this.formControl.hasError('email') ? 'Not a valid email' :
         '';
   }
 
-  submit(form: NgForm) {
-    console.log(form);
-    // emppty stuff
+  submit() {
+    //this.confirmAdd(form);      
+    // emppty stuff            
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  public confirmAdd(form: NgForm): void {           
-    if (this.router === '/category') {
+  public confirmAdd(form: NgForm): void {
+    if (this.data && this.data.name) {
       let category = {
         cateogry: {
           name: this.data.name,
@@ -97,7 +85,5 @@ export class AddComponent implements OnInit {
           console.log(response);
         });
     }
-  
   }
-
 }

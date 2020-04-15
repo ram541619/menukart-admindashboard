@@ -6,7 +6,7 @@ import { DashboardComponent } from 'src/app/modules/dashboard/dashboard.componen
 import { RouterModule } from '@angular/router';
 // import { PostsComponent } from 'src/app/modules/posts/posts.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { MatSidenavModule, MatDividerModule, MatCardModule, MatPaginatorModule, MatTableModule, MatTreeModule, MatDialogModule, MatFormFieldModule, MatButtonModule, MatIconModule, MatToolbarModule, MatInputModule, MatTooltipModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatChipsModule, MatGridListModule, MatProgressBarModule, MatSelectModule, MatCheckboxModule, MatSortModule } from '@angular/material';
+import { MatSidenavModule, MatDividerModule, MatCardModule, MatPaginatorModule, MatTableModule, MatTreeModule, MatDialogModule, MatFormFieldModule, MatButtonModule, MatIconModule, MatToolbarModule, MatInputModule, MatTooltipModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatChipsModule, MatGridListModule, MatProgressBarModule, MatSelectModule, MatCheckboxModule, MatSortModule, MatProgressSpinnerModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DashboardService } from 'src/app/modules/dashboard.service';
 import { CategoryComponent } from 'src/app/modules/category/category.component';
@@ -71,7 +71,8 @@ import { DiscountdailogComponent } from 'src/app/dialogs/discountdailog/discount
     MatProgressBarModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatSortModule
+    MatSortModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     CommonModule,
@@ -106,6 +107,7 @@ import { DiscountdailogComponent } from 'src/app/dialogs/discountdailog/discount
     MatSelectModule,
     MatCheckboxModule,
     MatSortModule,
+    MatProgressSpinnerModule,
     MenudailogComponent,
     DiscountdailogComponent,
     TaxdailogComponent

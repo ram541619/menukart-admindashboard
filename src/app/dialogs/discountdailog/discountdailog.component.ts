@@ -14,6 +14,8 @@ import { FormControl, Validators, NgForm } from '@angular/forms';
 export class DiscountdailogComponent implements OnInit {
   menuList: any[];
   categoryList: any[];
+  checked = false;
+  indeterminate = false;
 
   constructor(public dialogRef: MatDialogRef<MenudailogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,

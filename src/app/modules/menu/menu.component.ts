@@ -92,7 +92,7 @@ public searchOptions = [
 public selectedoption = -1;
 searchText: string;
   // search elements in table .
-	public doFilter(selectedVal: number, filterValue: string) {
+	public doFilter(selectedVal: number, filterValue: string) {    
 		if (filterValue && filterValue.trim() != "" && filterValue != null && filterValue != undefined) {
 			this.filterDataSource(selectedVal, filterValue);
 		}
@@ -122,35 +122,35 @@ searchText: string;
 		}
 	}
   
-  filterDataSource(selectedVal: number, filterValue: string) {
-		if (filterValue.indexOf('*') == -1) {
-			filterValue += '*';
-		}
+ filterDataSource(selectedVal: number, filterValue: string) {
+		// if (filterValue.indexOf('*') == -1) {
+		// 	filterValue += '*';
+		// }
 		this.dataSource.filterPredicate = (data: any, filter: any) => {
-			if (selectedVal == 1) {	
-				if (this.validateWildCardType(data.avilable? 'avilable': 'out of stock', filterValue.toString())) {
+			if (selectedVal == 1) {
+        if ((data.avilable? 'avilable': 'out of stock').search(filterValue.toLowerCase()) != -1) {
 					return data.avilable? 'avilable': 'Out Of Stock';
 				}
 			}
 			else if (selectedVal == 2) {
-				if (this.validateWildCardType(data.foodType ? data.foodType.toLowerCase():data.foodType, filterValue.toLowerCase())) {
+				if ((data.foodType ? data.foodType.toLowerCase():"").search(filterValue.toLowerCase()) != -1) {
 					return data.foodType;
 				}
 			}
 			else if (selectedVal == 3) {
-				if (this.validateWildCardType(data.onlineDisplayName ?data.onlineDisplayName.toLowerCase(): data.onlineDisplayName, filterValue.toLowerCase())) {
+          if((data.onlineDisplayName ?data.onlineDisplayName.toLowerCase(): "").toLowerCase().search(filterValue.toLowerCase()) != -1){
 					return data.onlineDisplayName;
 				}
 			}
 
 			else if (selectedVal == 4) {
-				if (this.validateWildCardType(data.cateogry ? data.cateogry.displayName.toLowerCase() : data.cateogry, filterValue.toLowerCase())) {
+				if ((data.cateogry ? data.cateogry.displayName.toLowerCase() : "").toLowerCase().search(filterValue.toLowerCase()) != -1) {
 					return data.cateogry ? data.cateogry.displayName : data.cateogry ;
 				}
 			}
 
 			else if (selectedVal == 5) {
-				if (this.validateWildCardType(data.shortCode ?data.shortCode.toLowerCase() : data.shortCode, filterValue.toLowerCase())) {
+				if ((data.shortCode ?data.shortCode.toLowerCase() : "").toLowerCase().search(filterValue.toLowerCase()) !=-1) {
 					return data.shortCode;
 				}
 			}

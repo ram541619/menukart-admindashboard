@@ -1,38 +1,41 @@
-<div class="container">
+<mat-toolbar>
+    <h3 mat-dialog-title>Add new Category</h3>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onNoClick()" tabIndex="-1">
+        <mat-icon>clear</mat-icon>
+    </button>
+</mat-toolbar>
+<!-- <mat-progress-spinner color="primary"
+   [mode]="modeName"> -->
+<!-- </mat-progress-spinner> -->
+<!-- <mat-spinner *ngIf="showSpinner"></mat-spinner> -->
 
+<form (ngSubmit)="submit(formControl)" #formControl="ngForm">
+    <mat-grid-list cols="2" rowHeight="230px">
+        <mat-grid-tile>
+            <div class="controles-container">
+                <mat-form-field color="accent">
+                    <input matInput placeholder="Category Title" [(ngModel)]="data.name" name="title" required>
+                    <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-label>Logo</mat-label>
+                <input type="file" (change)="onFileUpload($event)" name="logo" required>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div class="controles-container">
+                <mat-form-field color="accent">
+                    <input matInput placeholder="Category DisplayName" [(ngModel)]="data.displayName" name="displayName"
+                        required>
+                    <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
 
-  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
-
-    <div *ngIf="router == '/category'">
-      <h3 mat-dialog-title>Add new Category</h3>
-      <div class="form">
-        <mat-form-field color="accent">
-          <input matInput placeholder="Category Title" [(ngModel)]="data.name" name="title" required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-      <div class="form">
-        <mat-form-field color="accent">
-          <input matInput placeholder="Category DisplayName" [(ngModel)]="data.displayName" name="displayName" required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-      <div class="form">
-        <mat-form-field color="accent">
-          <input matInput placeholder="Quality" [(ngModel)]="data.quality" name="Quality">
-        </mat-form-field>
-      </div>
-      <div class="form">
-        <mat-label>Logo</mat-label> &nbsp; &nbsp;
-        <div width="20%">
-          <input type="file" (change)="onFileUpload($event)">
-        </div>
-      </div>
-    </div>
-    <div mat-dialog-actions>
-      <button mat-button [type]="submit" color="primary" style="width: 40%;" [disabled]="!formControl.valid"
-        [mat-dialog-close]="1" (click)="confirmAdd(formControl)">Save</button>
-      <button mat-button style="width: 40%;" color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
-    </div>
-  </form>
-</div>
+                <div class="button-row">
+                    <button mat-button [type]="submit" color="primary" (click)="confirmAdd()" [mat-dialog-close]="1"
+                        [disabled]="!formControl.valid">Save</button>
+                    <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</form>

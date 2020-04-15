@@ -17,12 +17,12 @@ export class MenudailogComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<MenudailogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public menuService: MenuService,
-    public categoryService: CategoryService) { 
-      categoryService.getCategories().subscribe(response=>{
-        this.categoryList = response;
-        console.log(this.categoryList);
-      });
-    }
+    public categoryService: CategoryService) {
+    categoryService.getCategories().subscribe(response => {
+      this.categoryList = response;
+      console.log(this.categoryList);
+    });
+  }
 
   formControl = new FormControl('', [
     Validators.required
@@ -30,8 +30,8 @@ export class MenudailogComponent implements OnInit {
 
   ngOnInit() {
   }
-  submit(form: NgForm) { 
-    debugger   
+  submit(form: NgForm) {
+    debugger
     console.log(form.value);
     this.confirmAdd(form);
     // emppty stuff
@@ -40,7 +40,7 @@ export class MenudailogComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
-  onFileRestaurantUpload(event){    
+  onFileRestaurantUpload(event) {
     this.restaurantFilePath = <File>event.target.files[0];
   }
   public confirmAdd(form: any): void {
@@ -64,7 +64,7 @@ export class MenudailogComponent implements OnInit {
         console.log(response);
       });
 
-   }
+  }
 
   getErrorMessage() {
     return this.formControl.hasError('required') ? 'Required field' :

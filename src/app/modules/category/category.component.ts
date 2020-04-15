@@ -12,16 +12,18 @@ import { AddComponent } from 'src/app/dialogs/add/add.component';
 export class CategoryComponent implements OnInit {
   model: Category = new Category;
   mainModel: Categorymodel = new Categorymodel;
+  showSpinner: boolean = false;
+  modeName: string = 'indeterminate';
   categoryList: Category[];
-  displayedColumns: string[] = ['id', 'name', 'displayName', 'quality', 'fileName', 'actions'];
+  displayedColumns: string[] = ['name', 'displayName', 'fileName', 'actions'];
   dataSource: MatTableDataSource<Category>;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(private categoryService: CategoryService,
-    private dialog: MatDialog) { 
-    
+    private dialog: MatDialog) {
+
   }
 
   ngOnInit() {
@@ -29,24 +31,30 @@ export class CategoryComponent implements OnInit {
     this.loadData();
   }
   refresh() {
+    //this.showSpinner = false;
+    this.modeName = 'indeterminate';
     this.loadData();
   }
 
   addNew(issue: Category) {
+    this.showSpinner = false;
     const dialogRef = this.dialog.open(AddComponent, {
-      data: { issue: issue }
+      data: { issue: issue }, width: '60%'
     });
-
-    dialogRef.afterClosed().subscribe(result => {
+    
+    dialogRef.afterClosed().subscribe(result => {       
       if (result === 1) {
         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside DataService
         // this.exampleDatabase.dataChange.value.push(this.dataService.getDialogData());
-        // this.refreshTable();
+        // this.refreshTable();           
         this.loadData();
-        this.refreshTable();
-      }
-    });
+        this.refreshTable();      
+      } 
+      else{
+        this.showSpinner = true;
+      }           
+    });    
   }
   private refreshTable() {
     this.paginator._changePageSize(this.paginator.pageSize);
@@ -60,12 +68,16 @@ export class CategoryComponent implements OnInit {
   }
 
   loadData() {
-    this.categoryService.getCategories().subscribe(a => {
-      this.categoryList = a as Category[];
-      console.log(this.categoryList);
-      this.dataSource = new MatTableDataSource(this.categoryList);
-      console.log(this.dataSource);
-    })
+    this.showSpinner = true;
+      setTimeout(() => {
+        this.categoryService.getCategories().subscribe(a => {
+          this.categoryList = a as Category[];
+          console.log(this.categoryList);
+          this.dataSource = new MatTableDataSource(this.categoryList);
+          console.log(this.dataSource);  
+          this.showSpinner = false;      
+        })        
+      }, 10000);    
   }
 
 }
